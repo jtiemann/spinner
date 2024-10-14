@@ -123,34 +123,6 @@ class RamdaSpinner extends HTMLElement {
     this.docContent = this.shadowRoot.getElementById('docContent');
     this.replContent = this.shadowRoot.getElementById('replContent');
     this.ramdaFunctions = []; // Initialize ramdaFunctions
-    this.spinButton.addEventListener('click', () => {
-      this.spinner = new Spinner().spin(this.spinnerContainer);
-      // this.spinner.spin();
-      debugger
-      this.docContent.classList.remove('show');
-      this.replContent.classList.remove('show');
-
-      this.docContent.src = '';
-      this.replContent.src = '';
-
-      setTimeout(() => {
-        const randomFunction = this.getRandomFunction();
-        const name = randomFunction.name.split('\n')[0]
-        const link = document.createElement('a');
-        this.docContent.classList.add('show');
-        this.replContent.classList.add('show');
-        link.href = `https://ramdajs.com/docs/#${name}`; // Set the link's URL
-        link.textContent = name;
-        link.target = '_blank'; // Open link in a new tab
-
-        this.docContent.src = link.href;
-        this.replContent.src = `https://ramdajs.com/repl/?v=0.30.1#?R.${name}`; // Set the repl iframe source
-
-        this.functionDisplay.innerHTML = '';
-        this.functionDisplay.appendChild(link);
-        this.spinner.stop(); // Hide spinner
-      }, 1000); // Simulate some delay
-    });
 
     // Fetch Ramda functions when the component is created
     this.fetchRamdaFunctions();
@@ -176,15 +148,35 @@ class RamdaSpinner extends HTMLElement {
     const randomIndex = Math.floor(Math.random() * this.ramdaFunctions.length);
     return this.ramdaFunctions[randomIndex];
   }
-  // let spinner; // Declare spinner variable
-
-  // let ramdaFunctions = []; // Initialize as an empty array
-
 
     // Add the spin button event listener when the component is added to the DOM
     connectedCallback() {
-      // this.spinner = new Spinner().spin(this.spinnerContainer);
-      // this.spinner.stop();
+      this.spinButton.addEventListener('click', () => {
+        this.spinner = new Spinner().spin(this.spinnerContainer);
+        this.docContent.classList.remove('show');
+        this.replContent.classList.remove('show');
+
+        this.docContent.src = '';
+        this.replContent.src = '';
+
+        setTimeout(() => {
+          const randomFunction = this.getRandomFunction();
+          const name = randomFunction.name.split('\n')[0]
+          const link = document.createElement('a');
+          this.docContent.classList.add('show');
+          this.replContent.classList.add('show');
+          link.href = `https://ramdajs.com/docs/#${name}`; // Set the link's URL
+          link.textContent = name;
+          link.target = '_blank'; // Open link in a new tab
+
+          this.docContent.src = link.href;
+          this.replContent.src = `https://ramdajs.com/repl/?v=0.30.1#?R.${name}`; // Set the repl iframe source
+
+          this.functionDisplay.innerHTML = '';
+          this.functionDisplay.appendChild(link);
+          this.spinner.stop(); // Hide spinner
+        }, 1000); // Simulate some delay
+      });
     }
 
     // Remove the event listener when the component is removed from the DOM
