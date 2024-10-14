@@ -1,25 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ramda Spinner</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
+  <meta charset="utf-8">
+  <title>Ramda Spinner Component</title>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script> -->
+  <!-- <script type="module" src="./node_modules/spin.js/spin.js"></script> -->
 </head>
 <body>
-  <div class="top-container">
-    <div class="sidebar">
-      <button id="spinButton">Spin</button>
-      <div id="functionDisplay"></div>
-      <div id="spinner"></div>
-    </div>
-    <div class="content">
-      <iframe id="docContent"></iframe>
-    </div>
-  </div>
-  <div class="bottom-container">
-    <iframe id="replContent"></iframe>
-  </div>
+  <ramda-spinner></ramda-spinner>
 
-  <script src="script.js"></script>
-</body>
+  <script type="module" src="script.js"></script> </body>
 </html>
